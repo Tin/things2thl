@@ -652,7 +652,11 @@ module Things2THL
       
       unless (options.quiet.nonzero?) 
         bullet  = (node.type == :area) ? "*" : ((node.status == :completed) ? "✓" : (node.status == :canceled) ? "×" : "-")
-        puts bullet + " " + node.name
+        node_name = node.name
+        if node.name.nil?
+           node_name = ''
+        end
+        puts bullet + " " + node_name
       end
 
       newnode=create_in_thl(node, container)
